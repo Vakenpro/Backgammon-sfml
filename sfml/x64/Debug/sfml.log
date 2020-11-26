@@ -1,0 +1,52 @@
+﻿  sfml.cpp
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(33,33): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(33,23): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(65,45): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(65,35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(106,67): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(106,60): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(118,79): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(118,69): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(119,68): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\vakintoshka\source\repos\sfml\sfml\sfml.cpp(119,44): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+  sfml.vcxproj -> C:\Users\vakintoshka\source\repos\sfml\x64\Debug\sfml.exe

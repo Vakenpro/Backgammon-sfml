@@ -3,128 +3,145 @@
 #include <time.h>
 #include "map.h"
 using namespace sf;
-
+/////////////////////////из-за удаления нарды мы не изменяем кол-во оставшихся ходов, не меняем цвет и вообще ломаем игру пофиксить/////////////////////
 int size = 56;
 
 Sprite f[30]; //figures
 Sprite posibleMoves[3];//posibleMoves
 Sprite dice[6]; //dice with dots
 Sprite dice2[6]; //dice with dots
+Sprite deleteButton;
+
+int findMoves(int arr[10][12], Vector2f oldPos, Vector2f newPos) {
+    int moves = 0;
+    if (oldPos.y / size < 5) {
+        moves =  oldPos.x / size;
+        moves += 1;
+        moves +=  newPos.x / size;
+    }
+    else {
+        moves = 11-oldPos.x / size;
+        moves += 1;
+        moves += 11-newPos.x / size;
+    }
+    return moves;
+}
 
 void random(int* arr[]) {
     for (int k = 0; k < 2;k++) {
         int num = 1 + rand() % 6; 
-            std::cout<<"num is" << num <<std::endl;
             (*arr)[k] = num;
     }
     
 }
 
 void findPosibles(int arr[10][12], int* xPose, int* yPose, int diceRoll) {
-    std::cout << "pose/size is" << (*xPose) / size<<std::endl;
-    std::cout << "yPose/size is" << (*yPose) / size << std::endl;
-    int oldX = (*xPose), oldY = (*yPose);
-    ///////////////top coords/////////////////////////
-    if ((*xPose)/size-diceRoll >= 0 && (*yPose)/size < 5) {
-        (*xPose) -= diceRoll*size;
-        int i = 0;
-        for (; i < 5; i++) {
-            if (arr[i][(*xPose) / size] == 0 ) {
-                (*yPose) = i * size;//test
-                break;
+    //std::cout << "pose/size is" << (*xPose) / size<<std::endl;
+    //std::cout << "yPose/size is" << (*yPose) / size << std::endl;
+    if (diceRoll > 0) {
+        int oldX = (*xPose), oldY = (*yPose);
+        ///////////////top coords/////////////////////////
+        if ((*xPose) / size - diceRoll >= 0 && (*yPose) / size < 5) {
+            (*xPose) -= diceRoll * size;
+            int i = 0;
+            for (; i < 5; i++) {
+                if (arr[i][(*xPose) / size] == 0) {
+                    (*yPose) = i * size;//test
+                    break;
+                }
+                if (arr[i][(*xPose) / size] * arr[oldY / size][oldX / size] < 0) {
+                    (*xPose) = -100;
+                    (*yPose) = -100;
+                    // std::cout << "this place is incorrect";
+                    break;
+                }
             }
-            if (arr[i][(*xPose) / size] * arr[oldY/size][oldX/size]<0) {
+            if (i == 5) {
                 (*xPose) = -100;
                 (*yPose) = -100;
-                std::cout << "this place is incorrect";
-                break;
+                //std::cout << "this place is incorrect";
             }
         }
-        if (i == 5) {
-            (*xPose) = -100;
-            (*yPose) = -100;
-            std::cout << "this place is incorrect";
-        }
-    }
 
-    ////////////////////bottom coords////////////////////////
-    else if ((*xPose)/size+diceRoll <= 11 && (*yPose)/size >= 5) {
-        (*xPose) += diceRoll*size;
-        int i = 9;
-        for (; i >=5; i--) {
-            if (arr[i][(*xPose) / size] == 0) {
-                (*yPose) = i * size;//test
-                break;
+        ////////////////////bottom coords////////////////////////
+        else if ((*xPose) / size + diceRoll <= 11 && (*yPose) / size >= 5) {
+            (*xPose) += diceRoll * size;
+            int i = 9;
+            for (; i >= 5; i--) {
+                if (arr[i][(*xPose) / size] == 0) {
+                    (*yPose) = i * size;//test
+                    break;
+                }
+                if (arr[i][(*xPose) / size] * arr[oldY / size][oldX / size] < 0) {
+                    (*xPose) = -100;
+                    (*yPose) = -100;
+                    //std::cout << "this place is incorrect";
+                    break;
+                }
             }
-            if (arr[i][(*xPose) / size] * arr[oldY / size][oldX / size] < 0) {
+            if (i == 4) {
                 (*xPose) = -100;
                 (*yPose) = -100;
-                std::cout << "this place is incorrect";
-                break;
+                // std::cout << "this place is incorrect";
             }
         }
-        if (i == 4) {
-            (*xPose) = -100;
-            (*yPose) = -100;
-            std::cout << "this place is incorrect";
-        }
-    }
 
-    //////////////////top to bottom coords////////////////////
-    else if ((*xPose)/size - diceRoll < 0 && (*yPose)/size < 5) {
-        (*xPose) = (abs( (*xPose)-diceRoll*size)-1*size);
-        int i = 9;
-        for (; i >= 5; i--) {
-            if (arr[i][(*xPose) / size] == 0) {
-                (*yPose) = i * size;//test
-                break;
+        //////////////////top to bottom coords////////////////////
+        else if ((*xPose) / size - diceRoll < 0 && (*yPose) / size < 5) {
+            (*xPose) = (abs((*xPose) - diceRoll * size) - 1 * size);
+            int i = 9;
+            for (; i >= 5; i--) {
+                if (arr[i][(*xPose) / size] == 0) {
+                    (*yPose) = i * size;//test
+                    break;
+                }
+                if (arr[i][(*xPose) / size] * arr[oldY / size][oldX / size] < 0) {
+                    (*xPose) = -100;
+                    (*yPose) = -100;
+                    //  std::cout << "this place is incorrect";
+                    break;
+                }
             }
-            if (arr[i][(*xPose) / size] * arr[oldY / size][oldX / size] < 0) {
+            if (i == 4) {
                 (*xPose) = -100;
                 (*yPose) = -100;
-                std::cout << "this place is incorrect";
-                break;
+                // std::cout << "this place is incorrect";
             }
+            //(*yPose) = 8 * size;
         }
-        if (i == 4) {
-            (*xPose) = -100;
-            (*yPose) = -100;
-            std::cout << "this place is incorrect";
-        }
-        //(*yPose) = 8 * size;
-    }
 
-    ////////////////bottom to top////////////////////////
-    else if ((*xPose)/size + diceRoll > 11 && (*yPose)/size >= 5) {
-        for (; (*xPose)/size < 11; (*xPose)+=size) {
-            diceRoll--;
-        }
-        for (;diceRoll!=1; (*xPose)-=size) {
-            diceRoll--;
-        }
-        int i = 0;
-        for (; i < 5; i++) {
-            if (arr[i][(*xPose) / size] == 0) {
-                (*yPose) = i * size;//test
-                break;
+        ////////////////bottom to top////////////////////////
+        else if ((*xPose) / size + diceRoll > 11 && (*yPose) / size >= 5) {
+            for (; (*xPose) / size < 11; (*xPose) += size) {
+                diceRoll--;
             }
-            
-             if (arr[i][(*xPose) / size] * arr[oldY / size][oldX / size] < 0) {
+            for (; diceRoll != 1; (*xPose) -= size) {
+                diceRoll--;
+            }
+            int i = 0;
+            for (; i < 5; i++) {
+                if (arr[i][(*xPose) / size] == 0) {
+                    (*yPose) = i * size;//test
+                    break;
+                }
+
+                if (arr[i][(*xPose) / size] * arr[oldY / size][oldX / size] < 0) {
+                    (*xPose) = -100;
+                    (*yPose) = -100;
+                    // std::cout << "this place is incorrect";
+                    break;
+                }
+            }
+            if (i == 5) {
                 (*xPose) = -100;
                 (*yPose) = -100;
-                std::cout << "this place is incorrect";
-                break;
+                // std::cout << "this place is incorrect";
             }
+            //(*yPose) = 2 * size;
         }
-        if (i == 5) {
-            (*xPose) = -100;
-            (*yPose) = -100;
-            std::cout << "this place is incorrect";
-        }
-        //(*yPose) = 2 * size;
+
+        ////////////////////fix/////////////////////////
     }
-    
-    ////////////////////fix/////////////////////////
 }
 
 void findPosible(int arr[10][12], int* xPose, int* yPose) {
@@ -186,7 +203,7 @@ Vector2f toCoord(char a, char b) {
     return Vector2f(x * size, y * size);
 }
 
-bool move(std::string str, int n) {
+bool move(std::string str, int n, int* moves, int arr[10][12]) {
     Vector2f oldPos = toCoord(str[0], str[1]);
     Vector2f newPos = toCoord(str[2], str[3]);
     bool isAble = true;
@@ -196,17 +213,29 @@ bool move(std::string str, int n) {
             isAble = false;
         }
     }
-    int moves = 0;
+    int actions = 0;
     for (int j = 0; j < 3; j++) {
-        std::cout << "x:" << posibleMoves[j].getPosition().x<<"and"<< f[n].getPosition().x;
+        //std::cout << "x:" << posibleMoves[j].getPosition().x<<"and"<< f[n].getPosition().x;
         if (newPos==posibleMoves[j].getPosition()) {
             f[n].setPosition(newPos);
-            moves++;
-            std::cout << "CORRECT PLACE";
+            actions++;
+            if ((oldPos.y/size < 5 && newPos.y/size >= 5) || (newPos.y/size < 5 && oldPos.y/size >= 5)) {
+                (*moves) -= findMoves(arr, oldPos, newPos);
+            }
+            else {
+                (*moves) -= abs(newPos.x - oldPos.x) / size;
+                if (abs(newPos.y - oldPos.y) / size >= 5) {
+                    (*moves) -= 1;
+                }
+            }
+
+            
+            std::cout << "moves" << (*moves);
+            //std::cout << "CORRECT PLACE";
             return true;
         }
     }
-    if (!isAble||moves==0) {
+    if (!isAble||actions==0) {
         f[n].setPosition(oldPos);
         return false;
     }
@@ -231,16 +260,23 @@ int main()
 {
     srand(time(NULL));
     RenderWindow window(VideoMode(758, 560), "Backgammon");
-    Texture t1,t2,t3,t4;
+    Texture t1,t2,t3,t4,t5;
     t1.loadFromFile("images/figures.png");
     t2.loadFromFile("images/board_pic1.png");
     t3.loadFromFile("images/figures.png");
     t4.loadFromFile("images/dice.png");
+
+    t5.loadFromFile("images/delete.png");
+    deleteButton.setTexture(t5);
+    deleteButton.setTextureRect(IntRect(0,0,size,size));
+    deleteButton.setPosition(673,2*size);
+    deleteButton.setColor(Color::Red);
+
     int checkMassive[10][12] ;
     bool isTurn = true;
     bool isOld = false;
     int color = 1;
-    bool isColor;
+    bool isColor = false;
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 12; j++) {
             checkMassive[i][j] = board[i][j];
@@ -298,7 +334,7 @@ int main()
     loadPosition();
     ///////////end figure texture////////////////
 
-    bool isMove = false;
+    bool isMove = false , isDelete = false;
     float dx = 0, dy = 0;
     int x=0;
     int y=0;
@@ -306,7 +342,9 @@ int main()
     Vector2f oldPos, newPos;
     std::string str;
     int n = 0;
+    int moves = 0;
     int* diceRoll = (int*)malloc(sizeof(int)*2);
+    int deleteRoll;
     while (window.isOpen())
     {
         Vector2i pos = Mouse::getPosition(window);
@@ -320,96 +358,209 @@ int main()
             ////////////drag and drop/////////////////
             if(event.type == Event::MouseButtonPressed)
                 if(event.key.code == Mouse::Left){
-                     
-                    for (int i = 0; i < 30; i++) {
-                        int xPose = f[i].getPosition().x / size;
-                        int yPose = f[i].getPosition().y / size;
-                        std::cout << "this elem is" << checkMassive[yPose][xPose];
-                        if (f[i].getGlobalBounds().contains(pos.x, pos.y) && checkMassive[yPose][xPose] / color >= 1) {
-                            isMove = true;
-                            isColor = true;
-                            n = i;
-                            dx = pos.x - f[i].getPosition().x;
-                            dy = pos.y - f[i].getPosition().y;
-                            oldPos = f[i].getPosition();
-                            x = oldPos.x;
-                            y = oldPos.y;
-
-                        }
-                    }
-                    if (isColor) {
-                        if (!isOld) {
-                            firstClick = Vector2f(pos);
-                            isOld = false;
+                    if (deleteButton.getGlobalBounds().contains(pos.x, pos.y)) {
+                        if (deleteButton.getColor() == Color::White) {
+                            f[n].setPosition(-100, -100);
+                            isDelete = true;
+                            moves -= deleteRoll;
+                            for (int i = 0; i < 2; i++) {
+                                if (diceRoll[i] == deleteRoll) {
+                                    diceRoll[i] = -1;
+                                }
+                            }
+                            if (diceRoll[0] + diceRoll[1] == deleteRoll && diceRoll[0] != -1&& diceRoll[1] != -1) {
+                                diceRoll[0] = -1;
+                                diceRoll[1] = -1;
+                            }
+                            deleteButton.setColor(Color::Red);
+                            checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] = 0;
                         }
                         else {
-                            isOld = true;
+                            isDelete = false;
                         }
-                        if (isTurn) {
-                            diceRoll[0] = -1;
-                            diceRoll[1] = -1;
-                        }
+                    }
+                    else {
+                        isDelete = false;
+                        for (int i = 0; i < 30; i++) {
+
+                            int xPose = f[i].getPosition().x / size;
+                            int yPose = f[i].getPosition().y / size;
+                            // std::cout << "this elem is" << checkMassive[yPose][xPose];
 
 
-                        ///////////////////here we start work with dices//////////////
-                        if (isTurn) {
-                            //generating dices rolls and hide every dices//
-                            random(&diceRoll);
-                            for (int l = 0; l < 6; l++) {
-                                dice[l].setPosition(-100, -100);
-                                dice2[l].setPosition(-100, -100);
-                            }
-                            ////////////////////////////////////////////////
-
-                            ////////////////////here we roll dices and set their position on window////////
-                            int firstRoll = diceRoll[0] - 1;
-                            int secondRoll = diceRoll[1] - 1;
-                            dice[firstRoll].setPosition(673, size * 0);
-                            dice2[secondRoll].setPosition(673, size * 1);
-                            ///////////////////////////////////////////////////////////////////////////////
-
-                            /////////here we find posible turns and show them/////////////////////////////
-                            findPosible(checkMassive, &x, &y);
-                            for (int l = 0; l < 3; l++) {
-                                int x1 = f[n].getPosition().x;
-                                int y1 = f[n].getPosition().y;
-                                if (l != 2) {
-                                    findPosibles(checkMassive, &x1, &y1, diceRoll[l]);
+                            if (f[i].getGlobalBounds().contains(pos.x, pos.y) && checkMassive[yPose][xPose] * color >= 1) {
+                                std::cout << "here";
+                                isMove = true;
+                                isColor = true;
+                                n = i;
+                                dx = pos.x - f[i].getPosition().x;
+                                dy = pos.y - f[i].getPosition().y;
+                                oldPos = f[i].getPosition();
+                                x = oldPos.x;
+                                y = oldPos.y;
+                                if (firstClick == oldPos) {
+                                    isOld = true;
                                 }
                                 else {
-                                    findPosibles(checkMassive, &x1, &y1, diceRoll[0] + diceRoll[1]);
+                                    isOld = false;
+                                    deleteButton.setColor(Color::Red);
                                 }
-                                posibleMoves[l].setPosition(x1, y1);
                             }
-                        }
-                        ////////////////////////////////////////////////////////////////////////////////////
 
-                        /////////////////////////if player diceded to make move with different figure//////////////////
-                        if (!isOld) {
-                            findPosible(checkMassive, &x, &y);
-                            for (int l = 0; l < 3; l++) {
-                                int x1 = f[n].getPosition().x;
-                                int y1 = f[n].getPosition().y;
-                                if (l != 2) {
-                                    findPosibles(checkMassive, &x1, &y1, diceRoll[l]);
-                                }
-                                else {
-                                    findPosibles(checkMassive, &x1, &y1, diceRoll[0] + diceRoll[1]);
-                                }
-                                posibleMoves[l].setPosition(x1, y1);
-                            }
                         }
-                        //////////////////////////////////////////////////////////////////////////////////////////////
+
+                        if (isColor) {
+                            if (!isOld) {
+                                firstClick = Vector2f(pos);
+                                isOld = false;
+                            }
+                            else {
+                                isOld = true;
+                            }
+                            if (isTurn) {
+                                diceRoll[0] = -1;
+                                diceRoll[1] = -1;
+                            }
+
+
+                            ///////////////////here we start work with dices//////////////
+                            if (isTurn) {
+                                //generating dices rolls and hide every dices//
+                                random(&diceRoll);
+                                for (int l = 0; l < 6; l++) {
+                                    dice[l].setPosition(-100, -100);
+                                    dice2[l].setPosition(-100, -100);
+                                }
+                                ////////////////////////////////////////////////
+
+                                ////////////////////here we roll dices and set their position on window////////
+                                int firstRoll = diceRoll[0] - 1;
+
+                                int secondRoll = diceRoll[1] - 1;
+                                moves = firstRoll + secondRoll + 2;
+                                dice[firstRoll].setPosition(673, size * 0);
+                                dice2[secondRoll].setPosition(673, size * 1);
+
+                                ///////////////////////////////////////////////////////////////////////////////
+
+                                /////////here we find posible turns and show them/////////////////////////////
+                                findPosible(checkMassive, &x, &y);
+                                for (int l = 0; l < 3; l++) {
+                                    std::cout << "diceRoll[l]= " << diceRoll[l] << " ";
+                                    if (diceRoll[l] > 0 || l == 2) {
+                                        int x1 = f[n].getPosition().x;
+                                        int y1 = f[n].getPosition().y;
+                                        if (checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] >= 13 && diceRoll[l] == oldPos.x / size + 1) {
+                                            std::cout << "delete it now" << "";
+                                            deleteButton.setColor(Color::White);
+                                            deleteRoll = diceRoll[l];
+                                        }
+                                        else if (checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] >= 13 && diceRoll[1] + diceRoll[0] == oldPos.x / size + 1) {
+                                            std::cout << "delete it now" << "";
+                                            deleteButton.setColor(Color::White);
+                                            deleteRoll = diceRoll[1] + diceRoll[0];
+
+                                        }
+                                        if (l != 2) {
+                                            findPosibles(checkMassive, &x1, &y1, diceRoll[l]);
+                                        }
+                                        else {
+                                            int sum = 0;
+                                            if (diceRoll[0] > 0) {
+                                                sum += diceRoll[0];
+
+                                            }
+                                            if (diceRoll[1] > 0) {
+                                                sum += diceRoll[1];
+
+                                            }
+                                            findPosibles(checkMassive, &x1, &y1, sum);
+                                        }
+                                        posibleMoves[l].setPosition(x1, y1);
+                                    }
+                                }
+                            }
+                            ////////////////////////////////////////////////////////////////////////////////////
+
+                            /////////////////////////if player diceded to make move with different figure//////////////////
+                            if (!isOld) {
+                                //findPosible(checkMassive, &x, &y);
+                                for (int l = 0; l < 3; l++) {
+                                    std::cout << "diceRoll[l]= " << diceRoll[l] << " ";
+                                    if (diceRoll[l] > 0 || l == 2) {
+                                        int x1 = f[n].getPosition().x;
+                                        int y1 = f[n].getPosition().y;
+                                        if (checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] >= 13 && diceRoll[l] == oldPos.x / size + 1) {
+                                            std::cout << "delete it now" << "";
+                                            deleteButton.setColor(Color::White);
+                                            deleteRoll = diceRoll[l];
+                                        }
+                                        else if (checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] >= 13 && diceRoll[1] + diceRoll[0] == oldPos.x / size + 1) {
+                                            std::cout << "delete it now" << "";
+                                            deleteButton.setColor(Color::White);
+                                            deleteRoll = diceRoll[1] + diceRoll[0];
+
+                                        }
+
+                                        if (l != 2) {
+                                            findPosibles(checkMassive, &x1, &y1, diceRoll[l]);
+                                        }
+                                        else {
+                                            int sum = 0;
+                                            if (diceRoll[0] > 0) {
+                                                sum += diceRoll[0];
+
+                                            }
+                                            if (diceRoll[1] > 0) {
+                                                sum += diceRoll[1];
+
+                                            }
+                                            findPosibles(checkMassive, &x1, &y1, sum);
+                                        }
+                                        posibleMoves[l].setPosition(x1, y1);
+                                    }
+                                }
+                            }
+                            //////////////////////////////////////////////////////////////////////////////////////////////
+                        }
                     }
                     }
             if (event.type == Event::MouseButtonReleased)
                 if (event.key.code == Mouse::Left) {
-                    if (isColor) {
+                    if (isColor&&!isDelete) {
                         isMove = false;
                         Vector2f p = f[n].getPosition() + Vector2f(size / 2, size / 2);
                         newPos = Vector2f(size * int(p.x / size), size * int(p.y / size));
                         str = toFigureNote(oldPos) + toFigureNote(newPos);
-                        isTurn = move(str, n);
+                        isTurn = move(str, n,&moves,checkMassive);
+                        if (moves != 0&&isTurn) {
+                            int nowMoves;
+
+                            if ((oldPos.y/size < 5 && newPos.y/size >= 5) || (newPos.y/size < 5 && oldPos.y/size >= 5)) {
+                                nowMoves = findMoves(checkMassive, oldPos, newPos);
+                            }
+                            else {
+                                
+
+                                nowMoves = abs(newPos.x - oldPos.x) / size;
+                                if (abs(newPos.y - oldPos.y) / size >= 5) {
+                                    nowMoves += 1;
+                                }
+                            }
+
+                            std::cout << "moves is" << moves << std::endl;
+                            for (int i = 0; i < 2; i++) {
+                                if (diceRoll[i] == nowMoves) {
+                                    std::cout << "fix moves";
+                                    diceRoll[i] = -1;
+                                    break;
+                                }
+                            }
+                            if (nowMoves == diceRoll[0] + diceRoll[1]&&diceRoll[0]!=-1&&diceRoll[1]!=-1) {
+                                diceRoll[0] = -1;
+                                diceRoll[1] = -1;
+                            }
+                        }
                         ////////////////check if there are posible turn///////////////////////
                         int err = 0;
                         for (int i = 0; i < 3; i++) {
@@ -422,10 +573,10 @@ int main()
                             std::cout<<std::endl;
                             std::swap(checkMassive[int(newPos.y) / size][int(newPos.x) / size], checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]);
                             if (checkMassive[int(newPos.y) / size][int(newPos.x) / size] > 0) {
-                                checkMassive[int(newPos.y) / size][int(newPos.x) / size] += abs(int(newPos.x) / size - oldPos.x / size);
+                                checkMassive[int(newPos.y) / size][int(newPos.x) / size] += abs(int(newPos.x) / size - oldPos.x / size)+1;
                             }
                             else {
-                                checkMassive[int(newPos.y) / size][int(newPos.x) / size] -= abs(int(newPos.x) / size - oldPos.x / size);
+                                checkMassive[int(newPos.y) / size][int(newPos.x) / size] -= abs(int(newPos.x) / size - oldPos.x / size)+1;
                             }
                               for (int i = 0; i < 10; i++) {
                                   for (int j = 0; j < 12; j++) {
@@ -434,15 +585,21 @@ int main()
                                   std::cout<<std::endl;
                               }
                             std::cout << str << std::endl;
-                            for (int i = 0; i < 3; i++) {
-                                posibleMoves[i].setPosition(-100, -100);
-                            }
-                            color *= -1;
-                            isColor = false;
+                                for (int i = 0; i < 3; i++) {
+                                    posibleMoves[i].setPosition(-100, -100);
+                                }
+                                if (moves != 0) {
+                                    isTurn = false;
+                                }
+                                else{
+                                    color *= -1;
+
+                                }
+                                isColor = false;
                         }
-                        if (err == 3) {
+                        /*if (err == 3) {
                             isTurn = true;
-                        }
+                        }*/
                     }
                 }
         }
@@ -451,12 +608,14 @@ int main()
 
         window.clear();
         window.draw(sBoard);
+        window.draw(deleteButton);
         for (int i = 0; i < 30; i++) window.draw(f[i]);
         for (int i = 0; i < 6; i++) {
             window.draw(dice[i]);
             window.draw(dice2[i]);
         } 
         for (int i = 0; i < 3; i++) window.draw(posibleMoves[i]);
+        
         window.display();
     }
 

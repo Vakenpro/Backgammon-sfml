@@ -3,7 +3,6 @@
 #include <time.h>
 #include "map.h"
 using namespace sf;
-/////////////////////////из-за удаления нарды мы не изменяем кол-во оставшихся ходов, не меняем цвет и вообще ломаем игру пофиксить/////////////////////
 int size = 56;
 
 Sprite f[30]; //figures
@@ -11,6 +10,33 @@ Sprite posibleMoves[3];//posibleMoves
 Sprite dice[6]; //dice with dots
 Sprite dice2[6]; //dice with dots
 Sprite deleteButton;
+
+bool winCondition(int arr[10][12] , int* whiteCount, int* blackCount) {
+    int whiteCount2 = 0, blackCount2 = 0;
+
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 12; j++) {
+            if (arr[i][j] > 0) {
+                whiteCount2++;
+            }
+            if (arr[i][j] < 0) {
+                blackCount2++;
+            }
+        }
+    }
+
+    (*whiteCount) = whiteCount2;
+    (*blackCount) = blackCount2;
+    if ((*whiteCount) == 0) {
+        std::cout << "white wins";
+        return true;
+    }
+    else if ((*blackCount) == 0) {
+        std::cout << "black wins";
+        return true;
+    }
+    return false;
+}
 
 int findMoves(int arr[10][12], Vector2f oldPos, Vector2f newPos) {
     int moves = 0;
@@ -258,6 +284,7 @@ void loadPosition() {
 
 int main()
 {
+    int whiteCount = 15, blackCount = 15;
     srand(time(NULL));
     RenderWindow window(VideoMode(758, 560), "Backgammon");
     Texture t1,t2,t3,t4,t5;
@@ -601,6 +628,10 @@ int main()
                             isTurn = true;
                         }*/
                     }
+                    if (winCondition(checkMassive, &whiteCount, &blackCount)) {
+                        break;
+                    }
+                    
                 }
         }
         

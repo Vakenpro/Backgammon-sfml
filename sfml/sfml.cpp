@@ -1,7 +1,7 @@
 ﻿#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <time.h>
-#include "map.h"
+#include <sstream>
 using namespace sf;
 int size = 56;
 
@@ -28,11 +28,11 @@ bool winCondition(int arr[10][12] , int* whiteCount, int* blackCount) {
     (*whiteCount) = whiteCount2;
     (*blackCount) = blackCount2;
     if ((*whiteCount) == 0) {
-        std::cout << "white wins";
+       // std::cout << "white wins";
         return true;
     }
     else if ((*blackCount) == 0) {
-        std::cout << "black wins";
+       // std::cout << "black wins";
         return true;
     }
     return false;
@@ -170,7 +170,7 @@ void findPosibles(int arr[10][12], int* xPose, int* yPose, int diceRoll) {
     }
 }
 
-void findPosible(int arr[10][12], int* xPose, int* yPose) {
+/*void findPosible(int arr[10][12], int* xPose, int* yPose) {
     if ((*yPose)/size < 5&&(*xPose)/size!=0) {
         for (int i = (*xPose) / size; i > -1; i--) {
             if (arr[0][i] == 0) {
@@ -201,7 +201,7 @@ void findPosible(int arr[10][12], int* xPose, int* yPose) {
 
         }
     }
-}
+}*/
 
 int board[10][12] = 
 {
@@ -256,7 +256,7 @@ bool move(std::string str, int n, int* moves, int arr[10][12]) {
             }
 
             
-            std::cout << "moves" << (*moves);
+            //std::cout << "moves" << (*moves);
             //std::cout << "CORRECT PLACE";
             return true;
         }
@@ -284,20 +284,35 @@ void loadPosition() {
 
 int main()
 {
+    ////////////////////////////////////Инициализация Строк/////////////////////////////
+    Font font;
+    font.loadFromFile("CyrilicOld.ttf");
+    Text deleteText("", font, 24);
+    Text colorText("",font,24);
+    Text whiteCountText("", font, 24);
+    Text blackCountText("", font, 24);
+    deleteText.setStyle(Text::Bold);
+    colorText.setStyle(Text::Bold);
+    whiteCountText.setStyle(Text::Bold);
+    blackCountText.setStyle(Text::Bold);
+    //////////////////////////////////////////////////////////////////////////////////
+
     int whiteCount = 15, blackCount = 15;
     srand(time(NULL));
-    RenderWindow window(VideoMode(758, 560), "Backgammon");
+    RenderWindow window(VideoMode(820, 560), "Backgammon");
+
+    ///////////////////////////////Инициализация Текстур////////////////////////////////
     Texture t1,t2,t3,t4,t5;
     t1.loadFromFile("images/figures.png");
     t2.loadFromFile("images/board_pic1.png");
     t3.loadFromFile("images/figures.png");
     t4.loadFromFile("images/dice.png");
-
     t5.loadFromFile("images/delete.png");
     deleteButton.setTexture(t5);
     deleteButton.setTextureRect(IntRect(0,0,size,size));
     deleteButton.setPosition(673,2*size);
     deleteButton.setColor(Color::Red);
+    ////////////////////////////////////////////////////////////////////////////////////
 
     int checkMassive[10][12] ;
     bool isTurn = true;
@@ -416,7 +431,7 @@ int main()
 
 
                             if (f[i].getGlobalBounds().contains(pos.x, pos.y) && checkMassive[yPose][xPose] * color >= 1) {
-                                std::cout << "here";
+                               // std::cout << "here";
                                 isMove = true;
                                 isColor = true;
                                 n = i;
@@ -471,19 +486,19 @@ int main()
                                 ///////////////////////////////////////////////////////////////////////////////
 
                                 /////////here we find posible turns and show them/////////////////////////////
-                                findPosible(checkMassive, &x, &y);
+                                //findPosible(checkMassive, &x, &y);
                                 for (int l = 0; l < 3; l++) {
-                                    std::cout << "diceRoll[l]= " << diceRoll[l] << " ";
+                                    //std::cout << "diceRoll[l]= " << diceRoll[l] << " ";
                                     if (diceRoll[l] > 0 || l == 2) {
                                         int x1 = f[n].getPosition().x;
                                         int y1 = f[n].getPosition().y;
-                                        if (checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] >= 13 && diceRoll[l] == oldPos.x / size + 1) {
-                                            std::cout << "delete it now" << "";
+                                        if (abs(checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]) >= 13 && diceRoll[l] == oldPos.x / size + 1) {
+                                            //std::cout << "delete it now" << "";
                                             deleteButton.setColor(Color::White);
                                             deleteRoll = diceRoll[l];
                                         }
-                                        else if (checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] >= 13 && diceRoll[1] + diceRoll[0] == oldPos.x / size + 1) {
-                                            std::cout << "delete it now" << "";
+                                        else if (abs(checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]) >= 13 && diceRoll[1] + diceRoll[0] == oldPos.x / size + 1) {
+                                            //std::cout << "delete it now" << "";
                                             deleteButton.setColor(Color::White);
                                             deleteRoll = diceRoll[1] + diceRoll[0];
 
@@ -513,17 +528,17 @@ int main()
                             if (!isOld) {
                                 //findPosible(checkMassive, &x, &y);
                                 for (int l = 0; l < 3; l++) {
-                                    std::cout << "diceRoll[l]= " << diceRoll[l] << " ";
+                                   // std::cout << "diceRoll[l]= " << diceRoll[l] << " ";
                                     if (diceRoll[l] > 0 || l == 2) {
                                         int x1 = f[n].getPosition().x;
                                         int y1 = f[n].getPosition().y;
-                                        if (checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] >= 13 && diceRoll[l] == oldPos.x / size + 1) {
-                                            std::cout << "delete it now" << "";
+                                        if (abs(checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]) >= 13 && diceRoll[l] == oldPos.x / size + 1) {
+                                            //std::cout << "delete it now" << "";
                                             deleteButton.setColor(Color::White);
                                             deleteRoll = diceRoll[l];
                                         }
-                                        else if (checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] >= 13 && diceRoll[1] + diceRoll[0] == oldPos.x / size + 1) {
-                                            std::cout << "delete it now" << "";
+                                        else if (abs(checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]) >= 13 && diceRoll[1] + diceRoll[0] == oldPos.x / size + 1) {
+                                           // std::cout << "delete it now" << "";
                                             deleteButton.setColor(Color::White);
                                             deleteRoll = diceRoll[1] + diceRoll[0];
 
@@ -575,10 +590,10 @@ int main()
                                 }
                             }
 
-                            std::cout << "moves is" << moves << std::endl;
+                            //std::cout << "moves is" << moves << std::endl;
                             for (int i = 0; i < 2; i++) {
                                 if (diceRoll[i] == nowMoves) {
-                                    std::cout << "fix moves";
+                                   // std::cout << "fix moves";
                                     diceRoll[i] = -1;
                                     break;
                                 }
@@ -597,7 +612,7 @@ int main()
                         }
                         //////////////////////////////////////////////////////////////////////
                         if (isTurn) {
-                            std::cout<<std::endl;
+                            //std::cout<<std::endl;
                             std::swap(checkMassive[int(newPos.y) / size][int(newPos.x) / size], checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]);
                             if (checkMassive[int(newPos.y) / size][int(newPos.x) / size] > 0) {
                                 checkMassive[int(newPos.y) / size][int(newPos.x) / size] += abs(int(newPos.x) / size - oldPos.x / size)+1;
@@ -605,13 +620,13 @@ int main()
                             else {
                                 checkMassive[int(newPos.y) / size][int(newPos.x) / size] -= abs(int(newPos.x) / size - oldPos.x / size)+1;
                             }
-                              for (int i = 0; i < 10; i++) {
+                             /* for (int i = 0; i < 10; i++) {
                                   for (int j = 0; j < 12; j++) {
                                       std::cout<<checkMassive[i][j]<<" " ;
                                   }
                                   std::cout<<std::endl;
                               }
-                            std::cout << str << std::endl;
+                            std::cout << str << std::endl;*/
                                 for (int i = 0; i < 3; i++) {
                                     posibleMoves[i].setPosition(-100, -100);
                                 }
@@ -639,14 +654,34 @@ int main()
 
         window.clear();
         window.draw(sBoard);
-        window.draw(deleteButton);
+        std::ostringstream whiteCountString;
+        whiteCountString << whiteCount;
+        std::ostringstream blackCountString;
+        blackCountString << blackCount;
+        whiteCountText.setString("Белых:"+ whiteCountString.str());
+        blackCountText.setString("Черных:" + blackCountString.str());
+        whiteCountText.setPosition(673, 3 * size + 30 * 2);
+        blackCountText.setPosition(673, 3 * size + 30 * 3);
+        window.draw(whiteCountText);
+        window.draw(blackCountText);
+        deleteText.setString("Удалить");
+        deleteText.setPosition(673, 3 * size);
+        if (color > 0) {
+            colorText.setString("Ход:Белые");
+        }
+        else {
+            colorText.setString("Ход:Черные");
+        }
+        colorText.setPosition(673, 3 * size + 30 * 1);
+        window.draw(deleteText);
+        window.draw(colorText);
         for (int i = 0; i < 30; i++) window.draw(f[i]);
         for (int i = 0; i < 6; i++) {
             window.draw(dice[i]);
             window.draw(dice2[i]);
         } 
         for (int i = 0; i < 3; i++) window.draw(posibleMoves[i]);
-        
+        window.draw(deleteButton);
         window.display();
     }
 

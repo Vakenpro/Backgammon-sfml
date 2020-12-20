@@ -1,51 +1,42 @@
 ﻿  sfml.cpp
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(44,27): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(45,27): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(46,34): warning C4244: +=: преобразование "T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(47,34): warning C4244: +=: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(49,19): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(50,19): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(51,36): warning C4244: +=: преобразование "T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(52,36): warning C4244: +=: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(229,33): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(179,33): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(229,23): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(179,23): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(252,60): warning C4244: -=: преобразование "float" в "int", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(279,45): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(279,35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(301,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(313,35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(341,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(359,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(403,75): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(403,68): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(201,60): warning C4244: -=: преобразование "float" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(224,45): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(224,35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(246,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(258,35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(294,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(312,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(356,75): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=int
@@ -54,17 +45,7 @@ C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(403,68): warning C4
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(428,39): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(429,39): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(433,75): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(356,68): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=int
@@ -73,7 +54,17 @@ C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(433,75): warning C4
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(433,68): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(384,39): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(385,39): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(389,75): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
           with
           [
               T=int
@@ -82,68 +73,77 @@ C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(433,68): warning C4
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(441,43): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(389,68): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(397,43): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(442,43): warning C4244: =: преобразование "T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(398,43): warning C4244: =: преобразование "T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(483,71): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(484,73): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(493,48): warning C4244: инициализация: преобразование "const T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(439,71): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(440,73): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(449,48): warning C4244: инициализация: преобразование "const T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(494,48): warning C4244: инициализация: преобразование "const T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(450,48): warning C4244: инициализация: преобразование "const T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(521,73): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(521,69): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(533,48): warning C4244: инициализация: преобразование "const T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(477,73): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(477,69): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(489,48): warning C4244: инициализация: преобразование "const T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(534,48): warning C4244: инициализация: преобразование "const T" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(490,48): warning C4244: инициализация: преобразование "const T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(562,73): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(562,69): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(574,83): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(518,73): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(518,69): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(530,83): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(574,73): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(530,73): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(575,72): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(531,72): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(575,48): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(531,48): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(587,69): warning C4244: =: преобразование "float" в "int", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(618,138): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(621,138): warning C4244: -=: преобразование "float" в "int", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(663,50): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(664,50): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(668,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(675,45): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(269): warning C4715: move: значение возвращается не при всех путях выполнения
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(544,69): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(576,138): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(579,138): warning C4244: -=: преобразование "float" в "int", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(631,50): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(632,50): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(636,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(643,45): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Asus\Documents\GitHub\Backgammon-sfml\sfml\sfml.cpp(214): warning C4715: move: значение возвращается не при всех путях выполнения
   sfml.vcxproj -> C:\Users\Asus\Documents\GitHub\Backgammon-sfml\x64\Debug\sfml.exe

@@ -371,6 +371,7 @@ int main()
                                 diceRoll[1] = -1;
                             }
                             deleteButton.setColor(Color::Red);
+                            std::cout << int(oldPos.y) / size<<"  "<<int(oldPos.x) / size<<std::endl;
                             checkMassive[int(oldPos.y) / size][int(oldPos.x) / size] = 0;
                         }
                         else {
@@ -407,13 +408,9 @@ int main()
 
                         }
 
-                        if (isColor) {
+                        if (isColor && isMove) {
                             if (!isOld) {
                                 firstClick = Vector2f(pos);
-                                isOld = false;
-                            }
-                            else {
-                                isOld = true;
                             }
                             if (isTurn) {
                                 diceRoll[0] = -1;
@@ -422,7 +419,7 @@ int main()
 
 
                             ///////////////////here we start work with dices//////////////
-                            if (isTurn) {
+                            if (isTurn && isMove) {
                                 //generating dices rolls and hide every dices//
                                 random(&diceRoll);
                                 for (int l = 0; l < 6; l++) {
@@ -472,7 +469,7 @@ int main()
                                                 sum += diceRoll[1];
 
                                             }
-                                            findPosibles(checkMassive, &x1, &y1, sum);
+                                                findPosibles(checkMassive, &x1, &y1, sum);
                                         }
                                         posibleMoves[l].setPosition(x1, y1);
                                     }
@@ -481,7 +478,7 @@ int main()
                             ////////////////////////////////////////////////////////////////////////////////////
 
                             /////////////////////////if player diceded to make move with different figure//////////////////
-                            if (!isOld) {
+                            if (!isOld && isMove) {
                                 //findPosible(checkMassive, &x, &y);
                                 for (int l = 0; l < 3; l++) {
                                    // std::cout << "diceRoll[l]= " << diceRoll[l] << " ";
@@ -513,7 +510,7 @@ int main()
                                                 sum += diceRoll[1];
 
                                             }
-                                            findPosibles(checkMassive, &x1, &y1, sum);
+                                                findPosibles(checkMassive, &x1, &y1, sum);
                                         }
                                         posibleMoves[l].setPosition(x1, y1);
                                     }
@@ -614,7 +611,8 @@ int main()
                         }
                         return 0;
                     }
-                    
+                    isMove = false;
+                    isColor = false;
                 }
         }
         

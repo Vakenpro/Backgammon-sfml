@@ -202,12 +202,15 @@ bool move(std::string str, int n, int* moves, int arr[10][12]) {
                 if (abs(newPos.y - oldPos.y) / size >= 5) {
                     (*moves) -= 1;
                 }
-            }        
+            }
+            std::cout << "moves:" << (*moves) << std::endl;
             return true;
+            
         }
     }
     if (!isAble||actions==0) {
         f[n].setPosition(oldPos);
+        std::cout << "moves:" << (*moves) << std::endl;
         return false;
     }
 
@@ -364,6 +367,7 @@ int main()
                             for (int i = 0; i < 2; i++) {
                                 if (diceRoll[i] == deleteRoll) {
                                     diceRoll[i] = -1;
+                                    break;
                                 }
                             }
                             if (diceRoll[0] + diceRoll[1] == deleteRoll && diceRoll[0] != -1&& diceRoll[1] != -1) {
@@ -450,7 +454,7 @@ int main()
                                             deleteButton.setColor(Color::White);
                                             deleteRoll = diceRoll[l];
                                         }
-                                        else if (abs(checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]) >= 13 && diceRoll[1] + diceRoll[0] == oldPos.x / size + 1) {
+                                        else if (abs(checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]) >= 13 && (diceRoll[1] + diceRoll[0] == oldPos.x / size + 1)&&diceRoll[0]!=-1&&diceRoll[1]!=-1) {
                                             //std::cout << "delete it now" << "";
                                             deleteButton.setColor(Color::White);
                                             deleteRoll = diceRoll[1] + diceRoll[0];
@@ -490,7 +494,7 @@ int main()
                                             deleteButton.setColor(Color::White);
                                             deleteRoll = diceRoll[l];
                                         }
-                                        else if (abs(checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]) >= 13 && diceRoll[1] + diceRoll[0] == oldPos.x / size + 1) {
+                                        else if (abs(checkMassive[int(oldPos.y) / size][int(oldPos.x) / size]) >= 13 && (diceRoll[1] + diceRoll[0] == oldPos.x / size + 1) && diceRoll[0] != -1 && diceRoll[1] != -1) {
                                            // std::cout << "delete it now" << "";
                                             deleteButton.setColor(Color::White);
                                             deleteRoll = diceRoll[1] + diceRoll[0];
